@@ -3,9 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
+<title>AngularJS demo code - 1.6.9v</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 <body>
-	Angular is up and running!
+
+	<div ng-app="">
+		<p>
+			Name : <input type="text" ng-model="name">
+		</p>
+		<h1>Hello {{name}}</h1>
+	</div>
+
 </body>
 </html>
