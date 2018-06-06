@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<title>AngularJS demo code - 1.6.9v</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	
+	<!-- ng-app per application -->
+	<div ng-app="myApp" class="padding-left-15">
+	
+		<!-- can have multiple controllers in one page -->
+		<div ng-controller="myCtrl1">
+			<h3>Date and Time is :: {{currentDate}}</h3>
+			
+			<h3>myCtrl1 - loaded</h3>
+			<p>
+				Name : <input type="text" ng-model="name">
+			</p>
+			<h1>Hello {{name}}</h1>
+			
+			Local Scope Color : {{color}}
+			
+			<hr/>
+			<h3>Filters</h3>
+			<h4>Upper Case : Hello {{name | uppercase}}</h4>
+			
+			<h4>Order By:</h4>
+			<!-- default is ascending order, by setting true; changing the order to descending -->
+			<div ng-repeat="user in usersList | orderBy:'marks':true">
+				<span>{{user.name}}</span>
+			</div>
+			
+			<h4>Filter:</h4>
+			Enter Name : <input type="text" ng-model="searchName" />
+			<ul>
+				<li ng-repeat="user in usersList | filter:searchName">
+					{{user.name | myCustomFilter}}
+				</li>
+			</ul>
+			
+			<span>{{myURL}}))</span>
+			
+			<hr/>
+			<h4>Services:</h4>
+			TestFunc method value : {{testFuncValue}}
+			
+			<hr/>
+			<h3>NG Options Vs NG Repeat</h3>
+			
+			<b>ng repeat :</b>
+			Select a User : 
+			<select ng-model="selectedUser">
+				<option ng-repeat="user in usersList" value="{{user.marks}}">
+					{{user.name}}
+				</option>
+			</select>
+			<br/>
+			Selected User marks is : {{selectedUser}}
+			
+			<br/>
+			<b>ng options :</b>
+			<select ng-model="selectedUser1" ng-options="user.name for user in usersList">
+			</select>
+			
+			<br/>
+			Selected User is : {{selectedUser1}}<br/>
+			Selected User name is : {{selectedUser1.name}}<br/>
+			Selected User marks is : {{selectedUser1.marks}}
+			
+
+		</div><!-- myCtrl1 ends here -->
+		
+		<hr/>
+		<div ng-controller="myCtrl2">
+		<h3>myCtrl2 - loaded</h3>
+			First Name : <input type="text" placeholder="{{firstNamePholder}}" ng-model="firstName" />
+			Last Name : <input type="text" placeholder="{{lastNamePholder}}" ng-model="lastName" /> 
+			Full Name : {{ firstName + " " + lastName }}
+		</div>
+		
+		<hr/>
+		<h3>ng-init and ng-repeat example</h3>
+		<!-- simple way to initialize values -->
+		<div ng-init="names=['Jani','Hege','Kai']">
+		  <ul>
+		    <li ng-repeat="x in names">
+		      {{ x }}
+		    </li>
+		  </ul>
+		</div>
+		
+		<hr/>
+		<h3>custom directive example</h3>
+		<!-- custom directives can written as Element name, Attribute, Class, Comment -->
+		<!-- default is EA -->
+		<my-test-directive></my-test-directive>
+		<div my-test-directive/>
+		<div class="my-test-directive" />
+		<!-- directive:my-test-directive -->
+		
+		<hr/>
+		<h3>Type Validations</h3>
+		<form action="" name="myForm">
+			Email : <input name="userEmail" type="email" ng-model="emailID"/>
+			<span ng-show="myForm.userEmail.$error.email">Not a valid email</span>
+			<h4>Status</h4>
+		    $valid : {{myForm.userEmail.$valid}}
+		    $dirty : {{myForm.userEmail.$dirty}}
+		    $touched : {{myForm.userEmail.$touched}}
+		</form>
+		
+		<hr/>
+		<h3>Accessing Root Scope</h3>
+		<!-- need not be in controller but need to be in ng-app -->
+		Root Scope Color : {{color}}
+		
+	</div> <!-- myApp ng-app module ends here -->
+	
+	<hr/>
+	<h3>Loading another ng-app in single HTML</h3>
+	<!-- Need To Manually Bootstrap All Other Modules -->
+	<div id="mySecondAppId" ng-app="mySecondApp" ng-controller="mySecondCtrl">
+		<h4>
+		{{secondAppVar}}
+		</h4>
+	</div>
+	
+	
+</body>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<script src="js/controllers/testController.js"></script>
+<script src="js/services/testService.js""></script>
+
+<link rel="stylesheet" href="styles/testStyles.css">
+</html>
