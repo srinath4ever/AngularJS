@@ -11,7 +11,7 @@
 <body>
 	
 	<!-- ng-app per application -->
-	<div ng-app="myApp">
+	<div ng-app="myApp" class="padding-left-15">
 	
 		<!-- can have multiple controllers in one page -->
 		<div ng-controller="myCtrl1">
@@ -25,8 +25,8 @@
 		<hr/>
 		<div ng-controller="myCtrl2">
 		<h3>myCtrl2 - loaded</h3>
-			First Name : <input type="text" placeholder="firstNamePholder" ng-model="firstName" />
-			Last Name : <input type="text" placeholder="lastNamePholder" ng-model="lastName" /> 
+			First Name : <input type="text" placeholder="{{firstNamePholder}}" ng-model="firstName" />
+			Last Name : <input type="text" placeholder="{{lastNamePholder}}" ng-model="lastName" /> 
 			Full Name : {{ firstName + " " + lastName }}
 		</div>
 		
@@ -55,12 +55,35 @@
 		<form action="" name="myForm">
 			Email : <input name="userEmail" type="email" ng-model="emailID"/>
 			<span ng-show="myForm.userEmail.$error.email">Not a valid email</span>
+			<h4>Status</h4>
+		    $valid : {{myForm.userEmail.$valid}}
+		    $dirty : {{myForm.userEmail.$dirty}}
+		    $touched : {{myForm.userEmail.$touched}}
 		</form>
 		
 		
+	</div> <!-- myApp ng-app module ends here -->
+	
+	
+	<!-- Need To Manually Bootstrap All Other Modules -->
+	<div id="mySecondAppId" ng-app="mySecondApp" ng-controller="mySecondCtrl">
+		<h3>
+		{{secondAppVar}}
+		</h3>
 	</div>
 
 </body>
+
+<style>
+input.ng-invalid {
+    background-color: lightblue;
+}
+
+.padding-left-15 {
+padding-left: 15px;
+}
+
+</style>
 
 <script>
 	var app = angular.module('myApp', []);
@@ -69,8 +92,8 @@
 	});
 	
 	app.controller('myCtrl2', function($scope){
-		$scope.firstNamePholder = "Enter your first name..";
-		$scope.lastNamePholder = "Enter your last name..";
+		$scope.firstNamePholder = "Enter your first name";
+		$scope.lastNamePholder = "Enter your last name";
 	});
 	
 	app.directive("myTestDirective", function(){
@@ -80,6 +103,12 @@
 		};
 	});
 	
+	var secondApp = angular.module('mySecondApp', []);
+	secondApp.controller('mySecondCtrl', function($scope){
+		$scope.secondAppVar = "Second App loaded successfully!";
+	});
+	//need to manually load other angular applications
+	angular.bootstrap(document.getElementById("mySecondAppId"), ['mySecondApp']);
 	
 	
 	
