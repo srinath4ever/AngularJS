@@ -1,7 +1,7 @@
 /**
  * test controller
  */
-var app = angular.module('myApp', []);
+var app = angular.module('myApp', ["ngRoute"]);
 
 app.run(function($rootScope){
 	$rootScope.color = "Green";
@@ -27,8 +27,9 @@ app.controller('myCtrl1', function($scope, $location, $http, $q, $interval, test
 	
 	$scope.testFuncValue = testService.testFunc(10);
 	
+	$scope.selectedUser = "ram"; 
 	
-	
+	$scope.selectedUser1 = {name: "shubha", marks : 89};
 	
 });
 
@@ -58,13 +59,14 @@ app.directive("myTestDirective", function(){
 		template : "<h2>My Test Directive loaded..!</h2>"
 	};
 });
-
+/*
 var secondApp = angular.module('mySecondApp', []);
 secondApp.controller('mySecondCtrl', function($scope){
 	$scope.secondAppVar = "Second NG App loaded successfully!";
 });
+*/
 //need to manually load other angular applications
-angular.bootstrap(document.getElementById("mySecondAppId"), ['mySecondApp']);
+//angular.bootstrap(document.getElementById("mySecondAppId"), ['mySecondApp']);
 /*
 // NOT WORKING - Need to look at it
 angular.element(document).ready(function () {

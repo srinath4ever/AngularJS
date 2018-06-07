@@ -48,6 +48,7 @@
 			<hr/>
 			<h3>NG Options Vs NG Repeat</h3>
 			
+			<!-- difference being ng-repeat selectedUser value is always a string and NOT a object!! -->
 			<b>ng repeat :</b>
 			Select a User : 
 			<select ng-model="selectedUser">
@@ -68,7 +69,14 @@
 			Selected User name is : {{selectedUser1.name}}<br/>
 			Selected User marks is : {{selectedUser1.marks}}
 			
+			<p><a href="#/!">Main</a></p>
 
+			<a href="#!red">Red</a>
+			<a href="#!green">Green</a>
+			<a href="#!blue">Blue</a>
+			
+			<ng-view></ng-view>
+			
 		</div><!-- myCtrl1 ends here -->
 		
 		<hr/>
@@ -117,25 +125,29 @@
 		
 	</div> <!-- myApp ng-app module ends here -->
 	
+	<!-- Need To Manually Bootstrap All Other Modules -->
+	<!-- 
 	<hr/>
 	<h3>Loading another ng-app in single HTML</h3>
-	<!-- Need To Manually Bootstrap All Other Modules -->
 	<div id="mySecondAppId" ng-app="mySecondApp" ng-controller="mySecondCtrl">
 		<h4>
 		{{secondAppVar}}
 		</h4>
 	</div>
-	
+	 -->
 	
 </body>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 
 <script src="js/controllers/testController.js"></script>
-<script src="js/services/testService.js""></script>
+<script src="js/services/testService.js"></script>
+<script src="js/common/routes.js"></script>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="styles/testStyles.css">
+
 </html>
